@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интерактивный калькулятор</title>
+</head>
+<body>
+  <form th:method="POST" th:action="@{/interactive/calculator}" th:object="${calcModel}">
+    <label>Введите первое число</label>
+    <br>
+    <input th:type="number" th:value="${calcModel.num1}" th:field="${calcModel.num1}">
+    <br>
+    <label>Введите второе число</label>
+    <br>
+    <input type="number" th:value="${calcModel.num2}" th:field="${calcModel.num2}">
+    <br>
+    <label>Выберите операцию</label>
+    <br>
+    <select type="text" th:field="${calcModel.operation}">
+      <option th:each="option:${calcOperations}"  th:text="${option.label}" th:value="${option.value}"></option>
+    </select>
+    <br>
+    <button type="submit">Посчитать</button>
+  </form>
+  <br><br><br>
+  <h2 th:if="${hasResult}">
+    Результат вычислений <p th:text="${result}"></p>
+  </h2>
+
+</body>
+</html>
